@@ -14,13 +14,11 @@ function Chat() {
     
     const [message,setMessage] = useState("");
     const [ourmessage,setOurMessage] = useState([]);
-    const [result,setResult] = useState(false)
-    const navigate = useNavigate()
-    const [list,setList] = useState()
+  
     let email ; 
     if(localStorage.getItem("data")){
         const emailData = JSON.parse(localStorage.getItem("data"))
-        email = emailData.data.email;
+        email = emailData.email;
         // setResult(true)
 
        }

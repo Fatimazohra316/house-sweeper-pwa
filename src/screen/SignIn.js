@@ -25,7 +25,7 @@ function SignIn() {
 
         }).then((response) => response.json())
         .then((data) => {
-            localStorage.setItem("data",JSON.stringify(data))
+            localStorage.setItem("data",JSON.stringify(data.data))
             // console.log(data);
             if(data.error){
                 setMessage(data.error)
@@ -50,7 +50,7 @@ function SignIn() {
                     <p className='better'>SignIn to get the Service Now.</p>
                     <form onSubmit={submituser}>
                     <div><input onChange={(e)=>setEmail(e.target.value)} className='name' placeholder='Enter Your Email Address' /></div>
-                    <div><input onChange={(e)=>setPassword(e.target.value)} className='name' placeholder='Password' /></div>
+                    <div><input type="password" onChange={(e)=>setPassword(e.target.value)} className='name' placeholder='Password' /></div>
                    {check ?  <p className="message">{message} *</p> : null}
                     <div><button className='signUpBtn'>Sign In</button></div>
                     </form>

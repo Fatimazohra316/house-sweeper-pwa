@@ -8,13 +8,14 @@ import image8 from "../images/account.png";
 let item ; 
 function History() {
    const[item,setItem] = useState([])
-   let email ;
-   const navigate = useNavigate()
+   let email ; 
+   let emailData;
+  
    if(localStorage.getItem("data")){
-      const emailData = JSON.parse(localStorage.getItem("data"))
-      email = emailData.data.email;
+      emailData = JSON.parse(localStorage.getItem("data"))
+      email = emailData.email
      }
-
+ 
   
    useEffect(()=>{
      
@@ -30,7 +31,7 @@ function History() {
             method : "POST",
             body : data
          }).then((response)=>response.json()).then((data)=>{
-            // console.log(data.data);
+            console.log(data.data);
             setItem(data.data)
          })
      

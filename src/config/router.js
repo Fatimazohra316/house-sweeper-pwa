@@ -83,10 +83,10 @@ function AppRouter(){
   
   function logout(){
     const data =  localStorage.clear("data")
-    if(!detail){
+   
       setActive(false)
       
-    }
+   
   
     navigate('/')
 
@@ -96,7 +96,7 @@ function AppRouter(){
   
   function logIn(){
     navigate("signin");
-    // setActive(true)
+    setActive(true)
     if(detail){
       setActive(true)
       
@@ -122,7 +122,7 @@ function AppRouter(){
         (<div>
             <div className="mainNavBar " id="mainNavbar">
             
-            {console.log(detail)}
+            {/* {console.log(detail)} */}
               <nav className="navbar navbar-expand-lg contain">
             <div className="container-fluid">
              

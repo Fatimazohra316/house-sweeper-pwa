@@ -24,7 +24,7 @@ function Booking() {
     const [secondButton, setSecondButton] = useState(true)
     const [changeButton, setChangeButton] = useState(false)
     const [button3, setButton3] = useState(true)
-    let email;
+    const [email,setEmail] = useState('')
     const [date, setDate] = useState("");
     const [time, setTime] = useState("");
     const [number, setNumber] = useState();
@@ -46,56 +46,67 @@ function Booking() {
     const [fieldCounts, setFieldCounts] = useState(false)
     const [fieldServiceName, setFieldServiceName] = useState('');
     const [fieldServiceNames, setFieldServiceNames] = useState(false);
-    const [check,setCheck] = useState(false)
-    let [detail,setDetail] = useState();
-    const [popup,setPopup] = useState(false)
+    const [check, setCheck] = useState(false)
+    let [detail, setDetail] = useState();
+    const [popup, setPopup] = useState(false)
+   
 
-   
-   
-    const [message,setMessage] = useState('')
-    
-    function submituser(e){
+
+    const [message, setMessage] = useState('')
+    useEffect(()=>{
+        
+        if(localStorage.getItem("data")){
+           const data = JSON.parse(localStorage.getItem("data"));
+           setEmail(data.email);
+           
+          
+
+           
+        }
+        
+    },[])      
+    function submituser(e) {
         e.preventDefault();
         let data = new FormData();
         data.append("email", emailAddress);
         // console.log(email);
         data.append("cpass", password);
         // console.log(password);
-        fetch("https://cleaningapp.8tkt.com/public/api/signin",{
-            method : "POST",
-            body : data
+        fetch("https://cleaningapp.8tkt.com/public/api/signin", {
+            method: "POST",
+            body: data
 
         }).then((response) => response.json())
-        .then((data) => {
-            localStorage.setItem("data",JSON.stringify(data))
-            // console.log(data);
-            if(data.error){
-                setMessage(data.error)
-                setCheck(true)
-            }
-            else{
-               setCross(false)
-              
-               setDetail(data.data.email);    
-               
-               
-               
-            }
+            .then((data) => {
+                localStorage.setItem("data", JSON.stringify(data.data))
+                console.log(data);
+                if (data.error) {
+                    setMessage(data.error)
+                    setCheck(true)
+                }
+                else {
+                    setCross(false)
 
-        })
-        
-        
-       
+                    
+
+
+
+                }
+
+            })
+
+
+
     }
-    
-    
+
+
 
     // console.log(emailAddress);
     const Location = useLocation()
     let categoryName = Location.state;
 
 
-    // console.log(categoryName);
+    console.log(categoryName);
     // console.log(email);
     // console.log(locatiom.state);
     function addButton() {
@@ -133,10 +144,7 @@ function Booking() {
             setFieldCounts(true)
         }
 
-        if (!serviceName) {
-            setFieldServiceName("Service Name is missing *");
-            setFieldServiceNames("true");
-        }
+       
         else {
             setPage1(false)
             setPage2(true)
@@ -148,10 +156,10 @@ function Booking() {
     }
     function addButton2() {
         // setPage1(false)
-
-        if (detail) {
+        // alert(email)
+        if (email) {
             const data = new FormData
-            data.append("serviceName", serviceName);
+            data.append("serviceName", categoryName);
             data.append("categoryName", categoryName);
             data.append("email", email);
             data.append("coupon", coupon);
@@ -165,14 +173,15 @@ function Booking() {
                 method: "POST",
                 body: data
             }).then((response) => response.json()).then((data) => {
-                // console.log(data);
+                console.log(data);
             })
             setPage2(false)
             navigate("/confirmbooking")
-            setPopup(true)
-           
+            // setPopup(true)
+            setCross(false)
+
         }
-        else if (!detail) {
+        else if (!email) {
             setCross(true)
 
         }
@@ -188,10 +197,10 @@ function Booking() {
         event.preventDefault();
 
     }
-
+  
     return (
         <div>
-            {console.log(detail)}
+            {/* {console.log(detail)} */}
             <div className="container">
                 <div className="onePart">
                     <div>
@@ -304,7 +313,7 @@ function Booking() {
                             </div>
                             <div className="marginService">
                                 <p className="deliveryDate">Service Name  :</p>
-                                <div className="calenderDiv"> <input onChange={(e) => setServiceName(e.target.value)} placeholder="Enter Service" className="calenderInput text-center" /></div>
+                                <div className="calenderDiv"> <input value={categoryName}  placeholder="Enter Service" className="calenderInput text-center" /></div>
                                 {fieldServiceNames ? <p className="fieldDate">{fieldDates}</p> : null}
                             </div>
                             {/* <div className="deliveryCalender">
@@ -349,10 +358,10 @@ function Booking() {
                                 </div>
                                 <div className="emaildiv">
                                     <p>Password</p>
-                                    <input onChange={(e) => setPassword(e.target.value)} className="emailInput" />
+                                    <input type='password' onChange={(e) => setPassword(e.target.value)} className="emailInput" />
 
                                 </div>
-                                {check ?  <p className="message">{message} *</p> : null}
+                                {check ? <p className="message">{message} *</p> : null}
                                 <button className="loginButton">Log In</button>
                             </div>
                         </form> </div> : null}
