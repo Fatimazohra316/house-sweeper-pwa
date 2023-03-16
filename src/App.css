@@ -39,7 +39,10 @@
 }
 
 .justin {
-  width: 5rem;
+  width: 3rem;
+  border-radius: 55px;
+  margin-left: 17px;
+  box-shadow: 0px 0px 13px 5px rgba(0, 0, 0, 0.2);
 }
 
 .contain {
@@ -47,9 +50,15 @@
   display: block;
   margin: 0 auto;
 }
-input:focus{
+
+input:focus {
   outline: none;
 }
+
+.starrating {
+  width: 100px;
+}
+
 .signUp {
   display: grid;
   grid-template-columns: 50% 50%;
@@ -179,7 +188,7 @@ input:focus{
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width: 27%;
+  width: 35%;
   font-size: 20px;
   font-weight: 500;
   color: #fff;
@@ -197,7 +206,7 @@ input:focus{
 .linkDiv a {
   color: white;
   text-decoration: none;
-  font-size: 24px;
+  font-size: 23px;
   font-weight: 500;
   padding: 1.5% 4%;
   display: flex;
@@ -881,7 +890,8 @@ textarea {
   color: #434382;
   display: block;
   margin: 5% auto;
-  width: 50%;
+  width: 32%;
+  box-shadow: 0px 0px 13px 5px rgba(0, 0, 0, 0.2);
 }
 
 #stepThree {
@@ -893,7 +903,7 @@ textarea {
   display: block;
   margin: auto;
   width: 50%;
-  box-shadow: 0px 0px 22.3226px #F6F7F9;
+  box-shadow: 0px 0px 13px 5px rgba(0, 0, 0, 0.2);
   border-radius: 15.8336px;
   margin-top: 10%;
   padding: 5%;
@@ -973,12 +983,13 @@ textarea {
 .profileDiv {
   display: flex;
   align-items: center;
-  /* justify-content: space-around; */
+  justify-content: space-evenly;
 }
 
 .details {
   font-size: 30px;
   font-weight: 500;
+  text-align: center;
 }
 
 .detailDiv {
@@ -993,6 +1004,7 @@ textarea {
   color: #434382;
   display: block;
   margin: 5% auto;
+  /* box-shadow: 0px 0px 13px 5px rgba(0, 0, 0, 0.2); */
   /* width: 50%; */
 }
 
@@ -1082,19 +1094,20 @@ textarea {
 
 .box {
   background: #F4F1FC;
-    border-radius: 20px;
-    margin-bottom: 5%;
-    width: 40%;
-    display: block;
-    margin: 5% auto;
-    padding: 2%;
-    position: absolute;
-    /* bottom: 127%; */
-    top: 35%;
-    left: 30%;
-    padding: 5rem;
+  border-radius: 20px;
+  margin-bottom: 5%;
+  width: 40%;
+  display: block;
+  margin: 5% auto;
+  padding: 2%;
+  position: absolute;
+  /* bottom: 127%; */
+  top: 35%;
+  left: 30%;
+  padding: 5rem;
 }
-.access{
+
+.access {
   font-size: 24px;
   font-weight: 800;
   color: #434382;
@@ -1102,42 +1115,46 @@ textarea {
   text-align: center;
 
 }
-.dontAccount{
+
+.dontAccount {
   font-size: 18px;
   font-weight: 500;
   color: #434382;
   text-align: center;
 }
 
-.dontAccount span{
+.dontAccount span {
   font-weight: 800;
   cursor: pointer;
 }
-.close{
+
+.close {
   position: absolute;
   right: 8%;
   width: 2rem;
 
 }
 
-.emailInput{
+.emailInput {
   width: 100%;
   border: none;
   border-radius: 10px;
   height: 50px;
   padding: 1rem;
 }
-.emailInput:focus{
+
+.emailInput:focus {
   outline: none;
 }
 
-.emaildiv{
+.emaildiv {
   font-size: 20px;
   font-weight: 500;
   color: #434382;
   margin-top: 5%;
 }
-.loginButton{
+
+.loginButton {
   background-color: #434382;
   color: #EFEBFB;
   display: block;
@@ -1148,20 +1165,24 @@ textarea {
   /* height: 30px; */
   padding: 0.5rem;
 }
-.fieldDate{
+
+.fieldDate {
   color: #B33A3A;
   font-size: 16px;
   /* font-weight: 400; */
   margin-top: 2%;
 }
+
 .service:hover {
- 
-  color: #fff  !important;
- 
+
+  color: #fff !important;
+
 }
-.marginLeft{
+
+.marginLeft {
   margin-left: 1rem;
 }
+
 .cardMainsDiv {
   display: grid;
   grid-template-columns: 15% 15% 15% 15% 15% 15%;
@@ -1170,6 +1191,7 @@ textarea {
   margin-top: 5%;
   margin-bottom: 5%;
 }
+
 .inputDivs {
   background-color: rgba(240, 240, 250, 1);
   display: flex;
@@ -1192,12 +1214,14 @@ textarea {
   background-color: rgba(240, 240, 250, 1) !important;
 
 }
+
 .searchingDiv {
   display: grid;
   grid-template-columns: 30% 30% 30%;
   justify-content: space-around;
   margin-bottom: 10%;
 }
+
 .searchingService {
   height: 200px;
   width: 100%;
@@ -1205,7 +1229,82 @@ textarea {
   border-radius: 12px 12px 0px 0px;
   box-shadow: 0px 0px 10px rgba(225, 204, 255, 0.25);
 }
-.left{
+
+.left {
   margin-top: 5%;
   margin-left: 2%;
+}
+
+.profileDetail {
+  width: 100px;
+  border-radius: 50px;
+}
+
+.passwordDiv {
+
+  /* text-align: center; */
+  background: #F6F7F9;
+  border-radius: 14.1861px;
+  margin-top: 5%;
+  padding: 1rem;
+  font-size: 18px;
+  font-weight: 400;
+  color: #434382;
+  display: block;
+  margin: 5% auto;
+  width: 50%;
+  box-shadow: 0px 0px 13px 5px rgba(0, 0, 0, 0.2);
+
+}
+
+.passwordDiv p {
+  text-align: center;
+  font-weight: 700;
+  font-size: 26px;
+
+}
+
+.passwordDiv input {
+  /* display: block; */
+  /* margin: 0 auto; */
+  border: none;
+  width: 75%;
+  margin-left: 5%;
+  border-radius: 10px;
+  height: 40px;
+  padding: 25px;
+  color:  #434382; 
+  text-align: center;
+  margin-top: 30px;
+
+}
+.password{
+  display: flex;
+  justify-content: center;
+
+
+}
+.passwordDiv input ::placeholder {
+  color: #434382;
+  font-weight: 600;
+}
+.detailImage {
+  width: 9rem;
+  border-radius: 85px;
+  /* margin-left: 17px; */
+  box-shadow: 0px 0px 13px 5px rgba(0, 0, 0, 0.2);
+  display: block;
+  /* margin: 0 autp; */
+  margin: 0 auto;
+}
+@media only screen and (max-width: 1200px){
+  .imageDiv{
+     width: 40%;
+  }
+  .inputDiv{
+    width: 25rem;
+  }
+  .linkDiv a {
+    font-size: 18px;
+  }
 }

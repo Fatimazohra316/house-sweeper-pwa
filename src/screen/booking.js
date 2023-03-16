@@ -24,7 +24,7 @@ function Booking() {
     const [secondButton, setSecondButton] = useState(true)
     const [changeButton, setChangeButton] = useState(false)
     const [button3, setButton3] = useState(true)
-    const [email,setEmail] = useState('')
+    // const [email,setEmail] = useState('')
     const [date, setDate] = useState("");
     const [time, setTime] = useState("");
     const [number, setNumber] = useState();
@@ -47,24 +47,38 @@ function Booking() {
     const [fieldServiceName, setFieldServiceName] = useState('');
     const [fieldServiceNames, setFieldServiceNames] = useState(false);
     const [check, setCheck] = useState(false)
-    let [detail, setDetail] = useState();
-    const [popup, setPopup] = useState(false)
+    const [minDate, setMinDate] = useState('');
+
+
+    let email ;
+    let data ; 
    
 
 
-    const [message, setMessage] = useState('')
+    const [message, setMessage] = useState('');
+    if(localStorage.getItem("data")){
+        data = JSON.parse(localStorage.getItem('data'))
+       
+         
+      }
+      else{
+        data = false
+      }
+     // console.log(arr);
+     console.log(data);
     useEffect(()=>{
         
-        if(localStorage.getItem("data")){
-           const data = JSON.parse(localStorage.getItem("data"));
-           setEmail(data.email);
-           
-          
-
-           
-        }
+      
+        const today = new Date().toISOString().split('T')[0];
+    
         
-    },[])      
+        setMinDate(today);
+        
+    },[])  
+    
+    
+
+    
     function submituser(e) {
         e.preventDefault();
         let data = new FormData();
@@ -84,7 +98,7 @@ function Booking() {
                     setMessage(data.error)
                     setCheck(true)
                 }
-                else {
+                else if(data){
                     setCross(false)
 
                     
@@ -155,9 +169,8 @@ function Booking() {
 
     }
     function addButton2() {
-        // setPage1(false)
-        // alert(email)
-        if (email) {
+        
+        if (data) {
             const data = new FormData
             data.append("serviceName", categoryName);
             data.append("categoryName", categoryName);
@@ -177,12 +190,15 @@ function Booking() {
             })
             setPage2(false)
             navigate("/confirmbooking")
-            // setPopup(true)
-            setCross(false)
+         
+            
+      
+    
 
         }
-        else if (!email) {
-            setCross(true)
+        else  {
+          setCross(true)
+          
 
         }
 
@@ -197,10 +213,13 @@ function Booking() {
         event.preventDefault();
 
     }
+    
+    
   
+    
     return (
         <div>
-            {/* {console.log(detail)} */}
+           
             <div className="container">
                 <div className="onePart">
                     <div>
@@ -222,10 +241,10 @@ function Booking() {
                         <div>
                             <div>
                                 <p className="deliveryDate">Enter your Delivery Date :</p>
-                                <div className="calenderDiv"><img className="calender" src={image1} /><input value={date} type="date" id="datePicker" onChange={(e) => setDate(e.target.value)} placeholder="Enter Date" className="calenderInput" /></div>
+                                <div className="calenderDiv"><img className="calender" src={image1} /><input min={minDate}  value={date} type="date" id="datePicker" onChange={(e) => setDate(e.target.value)} placeholder="Enter Date" className="calenderInput" /></div>
                                 {fieldDate ? <p className="fieldDate">{fieldDates}</p> : null}
 
-                            </div>
+                            </div>       
                             <div className="deliveryCalender">
                                 <p className="deliveryDate">Enter your Delivery Time :</p>
                                 <div className="calenderDiv"><img className="calender" src={image1} /><input id="timePicker" type="time" onChange={(e) => setTime(e.target.value)} placeholder="Enter Time" className="calenderInput" /></div>
@@ -236,7 +255,7 @@ function Booking() {
                         <div>
                             <div>
                                 <p className="deliveryDate">Enter your Number :</p>
-                                <div className="calenderDiv"> <input onChange={(e) => setNumber(e.target.value)} placeholder="+21-000000000" className="calenderInput" /></div>
+                                <div className="calenderDiv"> <input  type="number" pattern="[0-9]*"  onChange={(e) => setNumber(e.target.value)} placeholder="+21-000000000" className="calenderInput" /></div>
                                 {fieldNumbers ? <p className="fieldDate">{fieldNumber}</p> : null}
                             </div>
 
@@ -264,7 +283,7 @@ function Booking() {
                                 <div className="incrementDiv"><img src={image5} />
                                     <div className="decrement">
                                         <button onClick={() => {
-                                            if (count >= 0) {
+                                            if (count >= 1) {
                                                 setCount(count - 1)
                                             }
                                         }} className="increment">-</button>
@@ -285,7 +304,7 @@ function Booking() {
                                     <div className="contains">
                                         <div>
                                             <div class="radio">
-                                                <input type="radio" checked value="Male" name='gender' id='male' />
+                                                <input type="radio" checked  value="Male" name='gender' id='male' />
                                                 <label for="male"></label>
                                             </div>
                                         </div>
@@ -296,7 +315,7 @@ function Booking() {
                                     <div className="contains">
                                         <div >
                                             <div class="radio">
-                                                <input type="radio" value="Female" checked name='gender' id='female' />
+                                                <input type="radio" value="Female" disabled name='gender' id='female' />
                                                 <label for="female"></label>
                                             </div>
                                         </div>

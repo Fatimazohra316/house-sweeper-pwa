@@ -15,8 +15,9 @@ import image7 from "../images/history.png";
 import image8 from "../images/chat.png";
 import image9 from "../images/settings.png";
 import image10 from "../images/home.png";
+import image12 from "../images/profiles.jpg";
 import Item from "../screen/item.js";
-import { useEffect, useState } from "react";
+import { Component, useEffect, useState } from "react";
 import Booking from "../screen/booking.js";
 import ConfirmBooking from "../screen/confirmBooking.js";
 import Profile from "../screen/profile.js";
@@ -24,21 +25,21 @@ import { alignProperty } from "@mui/material/styles/cssUtils.js";
 import Searching from "../screen/searching.js";
 import image11 from '../images/left.png'
 import MyPage from "../screen/mypage.js";
-import Profiles from "../screen/profiles.js";
+
+import ChangePassword from "../screen/password.js";
 
 
 const data = localStorage.getItem("data")
 function AppRouter(){
   const [active,setActive] = useState(true);
-  
   const location = useLocation();
-  const [arr,setArr] = useState([])
   const [item,setItem] = useState("")
   const navigate = useNavigate()
   const { pathname } = location;
   const splitLocation = pathname.split("/");
   const [clickMe,setClickMe]= useState(true);
-  const [detail,setDetail] = useState()
+  let arr;
+  
  
 
   const getData = () => {
@@ -60,22 +61,20 @@ function AppRouter(){
  }
 
     
- useEffect(()=>{
-  getData();
+
   if(localStorage.getItem("data")){
-     setDetail(localStorage.getItem("data"))
+    arr = JSON.parse(localStorage.getItem('data'))
+   
+     
+  } else{
+    arr = false
   }
-  else{
-    setDetail()
-    // console.log("error");
-  }
- 
- 
- 
- },[])
 
 
 
+
+ console.log(arr);
+// 
 
 
 
@@ -84,7 +83,7 @@ function AppRouter(){
   function logout(){
     const data =  localStorage.clear("data")
    
-      setActive(false)
+    
       
    
   
@@ -96,11 +95,7 @@ function AppRouter(){
   
   function logIn(){
     navigate("signin");
-    setActive(true)
-    if(detail){
-      setActive(true)
-      
-    }
+  
     
   
   }
@@ -120,6 +115,7 @@ function AppRouter(){
 
       {window.location.href != "http://localhost:3000/signup" && window.location.href != "http://localhost:3000/signin" && 
         (<div>
+          
             <div className="mainNavBar " id="mainNavbar">
             
             {/* {console.log(detail)} */}
@@ -139,15 +135,15 @@ function AppRouter(){
                 
                 </ul>
                
-                {active ? (<div className="imageDiv">
+                {arr ? (<div className="imageDiv">
                   <div><img src={image4} /></div>
-                  <div>Justine Boyle <img className="justin" src={image5}/> </div>
+                  <div>{arr.name? arr.name : null}<img className="justin" src={arr.image ? arr.image : image12}/> </div>
                    <button onClick={logout} className="logout">Logout</button> 
                 </div>) :(<button onClick={logIn} className="login">Log In</button>)}
               </div>
             </div>
           </nav>
-          <div className="contain linkDiv">
+          <div className="container linkDiv">
             <Link  className={splitLocation[1] === "" ? "active" : "service"} to="/"><img src={image10}/><span className="marginLeft">Home</span></Link>
             <Link  className={splitLocation[1] === "services" ? "active" : "service"} to="services"><img src={image6}/><span className="marginLeft" >Services</span></Link>
             <Link  className={splitLocation[1] === "history" ? "active" : "service"} to="history"><img src={image7}/><span className="marginLeft" >History</span></Link>
@@ -171,7 +167,7 @@ function AppRouter(){
             <Route path="profile" element={<Profile/>}/>
             <Route path="searching" element={<Searching searchInput={item}/>}/>
             <Route path="mypage" element={<MyPage/>}/>
-            <Route path="profiles" element={<Profiles/>}/>
+            <Route path="password" element={<ChangePassword/>}/>
             
           </Routes>
         </>

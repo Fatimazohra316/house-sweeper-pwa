@@ -1,7 +1,7 @@
 import { FaceRetouchingNatural } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
-import image1 from '../images/justin.png';
-import image8 from "../images/account.png";
+// import image1 from '../images/justin.png';
+import image8 from "../images/profiles.jpg";
 import { json } from "react-router-dom";
 
 
@@ -16,12 +16,11 @@ function Profile() {
     const [email,setEmail] = useState('')
 
     let userDetails;
-    // let email;
-    let datas;
     const url = "https://cleaningapp.8tkt.com/public/api/editprofile";
     let data = JSON.parse(localStorage.getItem("data"));
-    // console.log(data);
     userDetails = data;
+    const img = userDetails.img
+
      
 
 
@@ -107,7 +106,7 @@ function Profile() {
             <div className="container">
                 <div className="detailDiv">
                     <div className="profilesDiv">
-                        <img src={image1} />
+                        <img className="detailImage" src={img ? img : image8} />
                         <p className="details">My Details</p>
                     </div>
                 </div>
