@@ -240,13 +240,13 @@ function Booking() {
                     <form onSubmit={handleSubmit} id="stepOne">
                         <div>
                             <div>
-                                <p className="deliveryDate">Enter your Delivery Date :</p>
+                                <p className="deliveryDate">Enter your Delivery Date </p>
                                 <div className="calenderDiv"><img className="calender" src={image1} /><input min={minDate}  value={date} type="date" id="datePicker" onChange={(e) => setDate(e.target.value)} placeholder="Enter Date" className="calenderInput" /></div>
                                 {fieldDate ? <p className="fieldDate">{fieldDates}</p> : null}
 
                             </div>       
                             <div className="deliveryCalender">
-                                <p className="deliveryDate">Enter your Delivery Time :</p>
+                                <p className="deliveryDate">Enter your Delivery Time </p>
                                 <div className="calenderDiv"><img className="calender" src={image1} /><input id="timePicker" type="time" onChange={(e) => setTime(e.target.value)} placeholder="Enter Time" className="calenderInput" /></div>
                                 {fieldTimes ? <p className="fieldDate">{fieldTime}</p> : null}
                             </div>
@@ -254,13 +254,13 @@ function Booking() {
                         </div>
                         <div>
                             <div>
-                                <p className="deliveryDate">Enter your Number :</p>
+                                <p className="deliveryDate">Enter your Number </p>
                                 <div className="calenderDiv"> <input  type="number" pattern="[0-9]*"  onChange={(e) => setNumber(e.target.value)} placeholder="+21-000000000" className="calenderInput" /></div>
                                 {fieldNumbers ? <p className="fieldDate">{fieldNumber}</p> : null}
                             </div>
-
+                            {/* <span className="current">Use Current Location</span> */}
                             <div className="deliveryCalender">
-                                <p className="deliveryDates">Your Address : <span className="current">Use Current Location</span></p>
+                                <p className="deliveryDates">Your Address </p>
                                 <div className="calenderDiv"><img className="calender" src={image2} /><input onChange={(e) => setAddress(e.target.value)} placeholder="Enter Your Address" className="calenderInput" /></div>
                                 {fieldAddresss ? <p className="fieldDate">{fieldAddress}</p> : null}
                             </div>
@@ -279,7 +279,7 @@ function Booking() {
                     <div id="stepTwo">
                         <div>
                             <div>
-                                <p className="deliveryDate">Service Quantity :</p>
+                                <p className="deliveryDate">Service Quantity </p>
                                 <div className="incrementDiv"><img src={image5} />
                                     <div className="decrement">
                                         <button onClick={() => {
@@ -297,7 +297,7 @@ function Booking() {
                             </div>
 
                             <div className="deliveryCalender">
-                                <p className="deliveryDate">Select your Payment Method :</p>
+                                <p className="deliveryDate">Select your Payment Method </p>
 
 
                                 <div>
@@ -327,11 +327,11 @@ function Booking() {
                         </div>
                         <div>
                             <div>
-                                <p className="deliveryDate">Price details  :</p>
+                                <p className="deliveryDate">Price details  </p>
                                 <div className="calenderDiv"> <input onChange={(e) => setCoupon(e.target.value)} placeholder="Enter Coupon Code" className="calenderInput text-center" /></div>
                             </div>
                             <div className="marginService">
-                                <p className="deliveryDate">Service Name  :</p>
+                                <p className="deliveryDate">Service Name  </p>
                                 <div className="calenderDiv"> <input value={categoryName}  placeholder="Enter Service" className="calenderInput text-center" /></div>
                                 {fieldServiceNames ? <p className="fieldDate">{fieldDates}</p> : null}
                             </div>

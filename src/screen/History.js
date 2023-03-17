@@ -52,7 +52,7 @@ function History() {
 
         </div>
         <div className="serviceName">
-         <div><img src={image2}/><span className="names">Service Name</span></div>
+         <div><img  src={image2}/><span className="names">Service Name</span></div>
          <div className="bookingId">
             <p>Booking Id</p>
             <p>Date</p>
@@ -63,15 +63,18 @@ function History() {
         </div>
         <div>
         {item ? item.map((e,i) => {
+         console.log(item);
                   return (
                      <div className="serviceNames">
-                     <div><img src={image3}/><span className="nam">Service Name</span></div>
+                     <div><img className="serviceImage" src={image3}/><span className="nam">Service Name</span></div>
                      <div className="booking">
                         <p>{e.id}</p>
                         <p>{e.booking_date}</p>
                         <p>{e.booking_time}</p>
-                        <p className="btn btn-warning">Pending</p>
-                        <p>{e.booking_total_price}</p>
+                        <p className="bg-warning p-1 rounded">{e.status ? e.status : 'Pending'}</p>
+                        <p>$ {e.booking_total_price? e.booking_total_price : 50
+}</p>
+                        
                      </div>
                     </div>
                   )
