@@ -23,7 +23,7 @@ import ConfirmBooking from "../screen/confirmBooking.js";
 import Profile from "../screen/profile.js";
 import { alignProperty } from "@mui/material/styles/cssUtils.js";
 import Searching from "../screen/searching.js";
-import image11 from '../images/left.png'
+import image11 from '../images/menu.png'
 import MyPage from "../screen/mypage.js";
 
 import ChangePassword from "../screen/password.js";
@@ -38,6 +38,7 @@ function AppRouter(){
   const { pathname } = location;
   const splitLocation = pathname.split("/");
   const [clickMe,setClickMe]= useState(true);
+  const [showContent, setShowContent] = useState(false)
   let arr;
   
  
@@ -108,6 +109,10 @@ function AppRouter(){
     
     // setClickMe(false)
   }
+  const handleButtonClick = () => {
+    setShowContent(!showContent);
+  };
+
 
     return(
       <>
@@ -154,16 +159,17 @@ function AppRouter(){
             
           </div>
           </div>
-          <div className="verticalNavbar">
+          <div onClick={handleButtonClick}  className="navMenu"><img  src={image11}/>  {showContent ? "" : ""}</div>
+          {showContent && <div className="verticalNavbar">
             <div><img className="houseSweep" src={image2}/></div>
             <div className="linksDivs">
-            <Link  className={splitLocation[1] === "" ? "activeclass btn" : "service btn"} to="/"><img src={image10}/><span className="marginLeft">Home</span></Link>
-            <Link  className={splitLocation[1] === "services" ? "active" : "service btn"} to="services"><img src={image6}/><span className="marginLeft" >Services</span></Link>
-            <Link  className={splitLocation[1] === "history" ? "active" : "service btn"} to="history"><img src={image7}/><span className="marginLeft" >History</span></Link>
-            <Link  className={splitLocation[1] === "chat" ? "active" : "service btn"} to="chat"><img src={image8}/><span className="marginLeft" >Chat Support</span></Link>
-            <Link  className={splitLocation[1] === "setting" ? "active" : "service btn"} to="setting"><img src={image9}/><span className="marginLeft" >Settings</span></Link>
+            <Link onClick={handleButtonClick}   className={splitLocation[1] === "" ? "activeclass btn" : "verticalService btn"} to="/"><img src={image10}/><span className="marginLeft">Home</span></Link>
+            <Link onClick={handleButtonClick}  className={splitLocation[1] === "services" ? "activeclass btn" : "verticalService btn"} to="services"><img src={image6}/><span className="marginLeft" >Services</span></Link>
+            <Link  onClick={handleButtonClick} className={splitLocation[1] === "history" ? "activeclass btn" : "verticalService btn"} to="history"><img src={image7}/><span className="marginLeft" >History</span></Link>
+            <Link  onClick={handleButtonClick} className={splitLocation[1] === "chat" ? "activeclass btn"  : "verticalService btn"} to="chat"><img src={image8}/><span className="marginLeft" >Chat Support</span></Link>
+            <Link onClick={handleButtonClick} className={splitLocation[1] === "setting" ? "activeclass btn" : "verticalService btn"} to="setting"><img src={image9}/><span className="marginLeft" >Settings</span></Link>
             </div>
-          </div>
+          </div>}
           
         </div>)}
         <Routes>
